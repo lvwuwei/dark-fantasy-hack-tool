@@ -254,6 +254,23 @@ def main():
     print "-"*60+"\n"
     print "                  Dark Fantasy - Hack Tool                    "
     print "-"*60+"\n"
+	print("|----------------------------------------------------------------------------------------------------|")
+	print("|  _   _   _  _      ____   _  __    ggggggg    _____   hh     hh   _____    y    y  ___             |")
+	print("| | | | | | || |    / ___| | |/ /  gg          |___ /   hh     hh  (____ ）   y  y    | |            |")
+	print("| | |_| | | || |_  | |     | ' /   gg    gggg    |_ \   hhhhhhhhh      ( )     yy     | |            |")
+	print("| |  _  | |__   _| | |___  | . \   gg     gg    ___) |  hh     hh    ( )___    yy     | |            |")
+	print("| |_| |_|    |_|    \____| |_|\_\    ggggggg   |____/   hh     hh   (______)   yy    _|_|_           |")
+	print("|                                                                                                    |")
+	print("|-----------------------------------------ghy>h4ckg3h2y1------------------------------{MR.lvwuwei}---|")
+	print("|                                                                                                    |")
+	print("|       ____  _     _  _____ _            ____  ____  ____  _      _      _____ ____                 |")
+	print("|      /  _ \/ \   / \/  __// \  /|      / ___\/   _\/  _ \/ \  /|/ \  /|/  __//  __\                |")
+	print("|      | / \|| |   | ||  \  | |\ ||      |    \|  /  | / \|| |\ ||| |\ |||  \  |  \/|                |")
+	print("|      | |-||| |_/\| ||  /_ | | \||      \___ ||  \_ | |-||| | \||| | \|||  /_ |    /                |")
+	print("|      \_/  \|\____/\_/\____\_/  \|      \____/\____/\_/ \|\_/  \|\_/  \|\____\|_/\_\                |")
+	print("|                                                                                                    |")
+	print("|____________________________________________________________________________________________________|")
+	print("")
     print "1.Port Scanning\n2.DDOS\n3.Banner Grabbing\n4.Web spider(gather all URLs for web hacking)\n5.FTP Password Cracker\n6.Email Scraping"
     choice=raw_input("Enter Your Choice: ")
     hostname=raw_input("Enter Host Site or IP adress (www.google.com, www.yoursite.com, 192.168.1.1)(dont add http:// or https://): ")
