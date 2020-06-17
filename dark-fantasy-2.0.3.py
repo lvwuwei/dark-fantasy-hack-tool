@@ -273,7 +273,7 @@ def main():
 	print("")
     print "1.Port Scanning\n2.DDOS\n3.Banner Grabbing\n4.Web spider(gather all URLs for web hacking)\n5.FTP Password Cracker\n6.Email Scraping"
     choice=raw_input("Enter Your Choice: ")
-    hostname=raw_input("Enter Host Site or IP adress (www.google.com, www.yoursite.com, 192.168.1.1)(dont add http:// or https://): ")
+    hostname=raw_input("Enter Host Site or IP adress(www.google.com,www.yoursite.com,192.168.1.1)(***d'ont-not add http:// or https://): ")
     hostname=str(hostname)
     if choice=='1':
         scanner(hostname)
